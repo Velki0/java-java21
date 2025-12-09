@@ -19,13 +19,7 @@ public class Method_02_Test {
         // TODO créer une méthode String format()
         default String format() {
 
-            StringBuilder sb = new StringBuilder();
-            int nombrePersonnes = 0;
-            for (Person person : findAll()) {
-                nombrePersonnes++;
-            }
-            sb.append("[").append(nombrePersonnes).append(" persons]");
-            return sb.toString();
+            return "[" + findAll().size() + " persons]";
 
         }
         // TODO la méthode retourne une chaîne de la forme [<nb_personnes> persons]
@@ -47,13 +41,7 @@ public class Method_02_Test {
         @Override
         public String format() {
 
-            StringBuilder sb = new StringBuilder();
-            int nombrePersonnes = 0;
-            for (Person ignored : findAll()) {
-                nombrePersonnes++;
-            }
-            sb.append("DaoA[").append(nombrePersonnes).append(" persons]");
-            return sb.toString();
+            return "DaoA[" + findAll().size() + " persons]";
 
         }
         // TODO la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
