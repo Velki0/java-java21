@@ -17,6 +17,17 @@ public class Method_02_Test {
         List<Person> findAll();
 
         // TODO créer une méthode String format()
+        default String format() {
+
+            StringBuilder sb = new StringBuilder();
+            int nombrePersonnes = 0;
+            for (Person person : findAll()) {
+                nombrePersonnes++;
+            }
+            sb.append("[").append(nombrePersonnes).append(" persons]");
+            return sb.toString();
+
+        }
         // TODO la méthode retourne une chaîne de la forme [<nb_personnes> persons]
         // TODO exemple de résultat : "[14 persons]", "[30 persons]"
     }
@@ -33,20 +44,31 @@ public class Method_02_Test {
         }
 
         // TODO redéfinir la méthode String format()
+        @Override
+        public String format() {
+
+            StringBuilder sb = new StringBuilder();
+            int nombrePersonnes = 0;
+            for (Person person : findAll()) {
+                nombrePersonnes++;
+            }
+            sb.append("DaoA[").append(nombrePersonnes).append(" persons]");
+            return sb.toString();
+
+        }
         // TODO la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
         // TODO exemple de résultat : "DaoA[14 persons]", "DaoA[30 persons]"
         // TODO l'implémentation réutilise la méthode format() de l'interface
-
     }
     // end::DaoA[]
 
     @Test
-    public void test_daoA_format() throws Exception {
+    public void test_daoA_format() {
 
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode format() pour que le test soit passant
-        String result = null;
+        String result = daoA.format();
 
         assert "DaoA[20 persons]".equals(result);
     }
