@@ -49,7 +49,7 @@ public class Method_02_Test {
 
             StringBuilder sb = new StringBuilder();
             int nombrePersonnes = 0;
-            for (Person person : findAll()) {
+            for (Person ignored : findAll()) {
                 nombrePersonnes++;
             }
             sb.append("DaoA[").append(nombrePersonnes).append(" persons]");
