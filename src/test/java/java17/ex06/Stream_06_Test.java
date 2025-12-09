@@ -3,6 +3,7 @@ package java17.ex06;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -36,10 +37,12 @@ public class Stream_06_Test {
     // TODO compléter la méthode pour que le calcul de la somme soit fait avec une instance d'Accumulator
     private long sumWithAccumulator(long n) {
         // TODO créer une instance de l'accumulateur (classe Accumulator)
-        Accumulator acc = null;
+        Accumulator acc = new Accumulator();
+
         LongStream longStream = LongStream.rangeClosed(1, n - 1);
 
         // TODO pour chaque élément de longStream, invoquer la méthode add de l'accumulateur (acc)
+        longStream.forEach(acc::add);
 
         return acc.total;
     }
@@ -56,9 +59,24 @@ public class Stream_06_Test {
     }
 
 
+    private class AccumulatorAtomic {
+        private final AtomicLong total = new AtomicLong(0);
+
+        private void add(long value) {
+            total.addAndGet(value);
+        }
+    }
+
     // TODO reprendre le code de sumWithAccumulator et rendre le traitement parallèle (.parallel())
     private long sumWithAccumulatorParallel(long n) {
-        return 0;
+
+        AccumulatorAtomic acc = new AccumulatorAtomic();
+        LongStream longStream = LongStream.rangeClosed(1, n - 1);
+
+        longStream.parallel().forEach(acc::add);
+
+        return acc.total.longValue();
+
     }
 
     // TODO Exécuter le test
