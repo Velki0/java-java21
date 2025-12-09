@@ -41,7 +41,7 @@ public class Method_02_Test {
         @Override
         public String format() {
 
-            return "DaoA" + IDao.super.format();
+            return this.getClass().getSimpleName() + IDao.super.format();
 
         }
         // TODO la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
